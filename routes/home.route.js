@@ -1,0 +1,33 @@
+const express = require("express");
+const videoUrlController = require("../controllers/videoUrl.controller");
+const reviewSystemController = require("../controllers/reviewSystem.controller");
+const router = express.Router();
+const {initializeApp} = require("firebase/app");
+const { getStorage, ref, getDownloadURL, uploadBytesResumable }=require("firebase/storage");
+
+const multer = require("multer");
+const config = require("../config/firebase.config");
+// const upload =require("../middileware/uploader");
+initializeApp(config.firebaseConfig);
+
+// Initialize Cloud Storage and get a reference to the service
+// const storage = getStorage();
+
+// Setting up multer as a middleware to grab photo uploads
+const upload = multer({ storage: multer.memoryStorage() });
+// console.log(upload)
+//review crud
+router.post("/review/post", upload.single('filename'), reviewSystemController.postReviewsSystem);
+router.get("/review/get/all", reviewSystemController.getAllReviews);
+router.get("/review/get/:id", reviewSystemController.getSpecificReview);
+// router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
+router.delete("/review/delete/:id", reviewSystemController.deleteReview);
+
+//videosUrl crud
+router.post("/videos/post", videoUrlController.postVideosUrl);
+router.get("/videos/get/all", videoUrlController.getAllVideosUrl);
+router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
+router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
+router.delete("/videos/delete/:id", videoUrlController.deleteVideosUrl);
+
+module.exports = router;
