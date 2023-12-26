@@ -1,6 +1,7 @@
 const express = require("express");
 const videoUrlController = require("../controllers/videoUrl.controller");
 const reviewSystemController = require("../controllers/reviewSystem.controller");
+const sliderController = require("../controllers/slider.controller");
 const router = express.Router();
 const {initializeApp} = require("firebase/app");
 const { getStorage, ref, getDownloadURL, uploadBytesResumable }=require("firebase/storage");
@@ -29,5 +30,10 @@ router.get("/videos/get/all", videoUrlController.getAllVideosUrl);
 router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
 router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
 router.delete("/videos/delete/:id", videoUrlController.deleteVideosUrl);
+
+//slider crud
+router.post("/slider/post", upload.array('filename'), sliderController.postSlider);
+router.get("/slider/get/all", sliderController.getAllSlider);
+router.get("/slider/get/:id", sliderController.getSpecificSlider);
 
 module.exports = router;
