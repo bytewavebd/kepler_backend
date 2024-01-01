@@ -38,7 +38,7 @@ exports.getAllVideosUrl = async (req, res) => {
   };
 exports.updateVideosUrl = async (req, res) => {
     try {
-        const { Url, alt } = req.body;
+        const { videoName, Url, alt,page  } = req.body;
         const updatedVideoUrl = await VideosUrl.findByIdAndUpdate(
           req.params.id,
           {videoName, Url, alt,page },
