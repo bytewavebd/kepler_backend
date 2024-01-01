@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
 
-const videosUrlSchema = new mongoose.Schema({
-  Url: String,
-  alt: String,
-});
+const videosUrlSchema = new mongoose.Schema(
+  {
+    videoName: String,
+    Url: String,
+    alt: String,
+  },
+  { timestamps: true }
+);
 
 //   passportInfoSchema.index({ productId: 1, userId: 1 }, { unique: true });
 

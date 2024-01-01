@@ -2,20 +2,19 @@ const VideosUrl = require("../modules/videosUrl");
 const { postVideoUrl, getAllVideoUrl, deleteVideoUrl, getSpecificVideoUrl } = require("../services/videosUrl.service");
 
 exports.postVideosUrl = async (req, res) => {
-  const { Url, alt } = req.body;
+  const { videoName, Url, alt } = req.body;
 
   try {
-    //   await wishlistItem.save();
-    // res.status(200).json(req.file);
-    const data = await postVideoUrl(Url, alt);
 
-    res.status(200).send({ message: "Url added" });
+    const data = await postVideoUrl(videoName, Url, alt);
+
+    res.status(200).send({ message: "Url added successfully" });
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
 };
 exports.getAllVideosUrl = async (req, res) => {
-    // const { _id } = req.query;
+
     try {
       const data = await getAllVideoUrl();
   
@@ -42,7 +41,7 @@ exports.updateVideosUrl = async (req, res) => {
         const { Url, alt } = req.body;
         const updatedVideoUrl = await VideosUrl.findByIdAndUpdate(
           req.params.id,
-          { Url, alt },
+          {videoName, Url, alt },
           { new: true }
         );
         if (!updatedVideoUrl) {
@@ -63,9 +62,7 @@ exports.updateVideosUrl = async (req, res) => {
       if (!deletedItem) {
         return res.status(404).send({ error: "Item not found" });
       }
-      //     if(res.status==200){
-      // fs.unlink(path.join(__dirname,))
-      //     }
+ 
       res.status(200).send({ message: "Item removed " });
     } catch (error) {
       res.status(400).send({ error: error.message });
