@@ -1,17 +1,20 @@
 const mongoose = require("mongoose");
 
-const reviewSystemSchema = new mongoose.Schema({
-  image:String,
-  filename:String,
-  reviewerName: String,
-  rating: {
-    type: Number,
-    required: true,
-    min: 1,
-    max: 5,
+const reviewSystemSchema = new mongoose.Schema(
+  {
+    image: String,
+    filename: String,
+    reviewerName: String,
+    rating: {
+      type: Number,
+      required: true,
+      min: 1,
+      max: 5,
+    },
+    comment: String,
   },
-  comment: String,
-});
+  { timestamps: true }
+);
 
 //   passportInfoSchema.index({ productId: 1, userId: 1 }, { unique: true });
 
