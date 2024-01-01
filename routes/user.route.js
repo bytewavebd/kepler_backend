@@ -10,7 +10,7 @@ router.put("/google_login/:email", userController.googleLogin);
 router.post("/phone_login/:phone", userController.phoneLogin);
 // router.get("/data", userController.getData);
 // router.get("/me", verifyToken, userController.getMe);
-router.get("/me/:email", verifyToken, userController.getMe);
+router.get("/me/:email", userController.getMe);
 router.get("/me/:email/:phone",  userController.getMeByMailandPhone);
 router.put("/update/:email",  userController.updateUser);
 router.put("/updatePhone/:email",  userController.updatePhoneNumber);
