@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.static('public'));
 // const passportInfoRoute = require("./routes/passportInfo.route");
 const homeRoute = require("./routes/home.route");
-
+const userRoute = require("./routes/user.route");
 // const productRoute = require("./routes/product.route");
 // const cartRoute = require("./routes/cart.route");
 // const wishlistRoute = require("./routes/wishlist.route");
@@ -18,9 +18,9 @@ app.get("/", (req, res) => {
   res.send("Route is working! YaY!");
 });
 
-// app.use("/api/v1/passport", passportInfoRoute);
-app.use("/api/v1/home", homeRoute);
 
+app.use("/api/v1/home", homeRoute);
+app.use("/api/v1/user", userRoute);
 
 
 
