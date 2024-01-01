@@ -1,8 +1,8 @@
 const VideosUrl = require("../modules/videosUrl");
 
-exports.postVideoUrl = async (videoName,Url, alt) => {
+exports.postVideoUrl = async (videoName,Url, alt,page) => {
   // console.log(image);
-  const VideosUrlItem = new VideosUrl({videoName, Url, alt });
+  const VideosUrlItem = new VideosUrl({videoName, Url, alt,page });
   const videosUrl = await VideosUrlItem.save();
   console.log(videosUrl);
   return videosUrl;

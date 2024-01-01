@@ -5,6 +5,7 @@ const videosUrlSchema = new mongoose.Schema(
     videoName: String,
     Url: String,
     alt: String,
+    page:String
   },
   { timestamps: true }
 );

@@ -2,11 +2,11 @@ const VideosUrl = require("../modules/videosUrl");
 const { postVideoUrl, getAllVideoUrl, deleteVideoUrl, getSpecificVideoUrl } = require("../services/videosUrl.service");
 
 exports.postVideosUrl = async (req, res) => {
-  const { videoName, Url, alt } = req.body;
+  const { videoName, Url, alt,page } = req.body;
 
   try {
 
-    const data = await postVideoUrl(videoName, Url, alt);
+    const data = await postVideoUrl(videoName, Url, alt,page);
 
     res.status(200).send({ message: "Url added successfully" });
   } catch (error) {
