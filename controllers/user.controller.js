@@ -7,19 +7,7 @@ const {
 } = require("../services/user.service");
 const { generateToken } = require("../utils/token");
 
-const axios = require("axios");
 const jwt = require("jsonwebtoken");
-const getConfig = () => {
-  const djangoToken = process.env.DJANGO_TOKEN;
-
-  const config = {
-    headers: {
-      Authorization: `Token ${djangoToken}`,
-    },
-  };
-
-  return config;
-};
 
 exports.signup = async (req, res) => {
   try {

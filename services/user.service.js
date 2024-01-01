@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../modules/User");
 
 
 exports.signupService = async (userInfo) => {
