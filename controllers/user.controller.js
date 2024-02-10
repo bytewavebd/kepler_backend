@@ -9,13 +9,19 @@ const { generateToken } = require("../utils/token");
 
 const jwt = require("jsonwebtoken");
 
+exports.jwtCreate=async(req, res)=>{
+  const user = req.body;
+  const token = jwt.sign(user, process.env.TOKEN_SECRET, { expiresIn: '1h' });
+  res.send({ token });
+}
+
 exports.signup = async (req, res) => {
   try {
-    const userPhone = await findUserByPhone(req.body.phone);
+    // const userPhone = await findUserByPhone(req.body.phone);
 
     const email = await findUserByEmail(req.body.email);
-
-    if (!email && !userPhone) {
+    console.log(req);
+    if (!email) {
       const user = await signupService(req.body);
       console.log("user", user);
 
@@ -24,33 +30,48 @@ exports.signup = async (req, res) => {
         message: "Successfully signed up",
         user,
       });
-    } else if (email) {
-      if (userPhone) {
-        const user = await findUserByEmailandPhone(email, userPhone);
-        if (user) {
-          return res.status(401).json({
-            status: "phoneFail",
-            error:
-              "phone number already exits with another mail, please use another phone number",
-          });
-        } else {
-          return res.status(403).json({
-            status: "emailPhonefail",
-            error: "email and phone Already Exits ",
-          });
-        }
-      } else {
-        return res.status(401).json({
-          status: "emailFail",
-          error: "email Already Exits ",
-        });
-      }
-    } else if (userPhone) {
-      return res.status(402).json({
-        status: "phoneFail",
-        error: "phone number Already Exits ",
+    } else {
+      return res.status(403).json({
+        status: "emailfail",
+        error: "email  Exits ",
       });
     }
+    // if (!email && !userPhone) {
+    //   const user = await signupService(req.body);
+    //   console.log("user", user);
+
+    //   return res.status(200).json({
+    //     status: "success",
+    //     message: "Successfully signed up",
+    //     user,
+    //   });
+    // } else if (email) {
+    //   if (userPhone) {
+    //     const user = await findUserByEmailandPhone(email, userPhone);
+    //     if (user) {
+    //       return res.status(401).json({
+    //         status: "phoneFail",
+    //         error:
+    //           "phone number already exits with another mail, please use another phone number",
+    //       });
+    //     } else {
+    //       return res.status(403).json({
+    //         status: "emailPhonefail",
+    //         error: "email and phone Already Exits ",
+    //       });
+    //     }
+    //   } else {
+    //     return res.status(401).json({
+    //       status: "emailFail",
+    //       error: "email Already Exits ",
+    //     });
+    //   }
+    // } else if (userPhone) {
+    //   return res.status(402).json({
+    //     status: "phoneFail",
+    //     error: "phone number Already Exits ",
+    //   });
+    // }
   } catch (error) {
     // console.log(error);
 

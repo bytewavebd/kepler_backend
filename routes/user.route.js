@@ -4,6 +4,7 @@ const verifyToken = require("../middileware/verifyToken");
 const router = express.Router();
 
 
+router.post("/jwt", userController.jwtCreate);
 router.post("/signup", userController.signup);
 router.post("/login", userController.login);
 router.put("/google_login/:email", userController.googleLogin);

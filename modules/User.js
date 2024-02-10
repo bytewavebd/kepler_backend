@@ -13,31 +13,31 @@ const userSchema = mongoose.Schema(
       unique: true,
       required: [true, "Email address is required"],
     },
-    password: {
-      type: String,
-      // required: [true, "Password is required"],
-      validate: {
-        validator: (value) =>
-          validator.isStrongPassword(value, {
-            minLength: 0,
-            minLowercase: 0,
-            minNumbers: 0,
-            minSymbols: 0,
-            minUppercase: 0,
-          }),
-        // message: "Password {VALUE} is not strong enough.",
-      },
-    },
-    confirmPassword: {
-      type: String,
-      // required: [true, "Please confirm your password"],
-      validate: {
-        validator: function (value) {
-          return value === this.password;
-        },
-        message: "Passwords don't match!",
-      },
-    },
+    // password: {
+    //   type: String,
+ 
+    //   validate: {
+    //     validator: (value) =>
+    //       validator.isStrongPassword(value, {
+    //         minLength: 0,
+    //         minLowercase: 0,
+    //         minNumbers: 0,
+    //         minSymbols: 0,
+    //         minUppercase: 0,
+    //       }),
+    
+    //   },
+    // },
+    // confirmPassword: {
+    //   type: String,
+    //   // required: [true, "Please confirm your password"],
+    //   validate: {
+    //     validator: function (value) {
+    //       return value === this.password;
+    //     },
+    //     message: "Passwords don't match!",
+    //   },
+    // },
 
     role: {
       type: String,
