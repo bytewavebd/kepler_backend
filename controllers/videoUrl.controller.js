@@ -26,7 +26,7 @@ exports.getAllVideosUrl = async (req, res) => {
 
   exports.getSpecificVideosUrl = async (req, res) => {
     const { id } = req.params;
-  console.log(id);
+  // console.log(id);
     try {
       const data = await getSpecificVideoUrl(id);
       //   const wishlist = await Wishlist.find({ userId });
