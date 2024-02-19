@@ -8,6 +8,7 @@ const { getStorage, ref, getDownloadURL, uploadBytesResumable }=require("firebas
 
 const multer = require("multer");
 const config = require("../config/firebase.config");
+const verifyToken = require("../middileware/verifyToken");
 // const upload =require("../middileware/uploader");
 initializeApp(config.firebaseConfig);
 
@@ -18,8 +19,8 @@ initializeApp(config.firebaseConfig);
 const upload = multer({ storage: multer.memoryStorage() });
 // console.log(upload)
 //review crud
-router.post("/review/post", upload.single('filename'), reviewSystemController.postReviewsSystem);
-router.get("/review/get/all", reviewSystemController.getAllReviews);
+router.post("/review/post", upload.single('filename'),reviewSystemController.postReviewsSystem);
+router.get("/review/get/all",verifyToken, reviewSystemController.getAllReviews);
 router.get("/review/get/:id", reviewSystemController.getSpecificReview);
 // router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
 router.delete("/review/delete/:id", reviewSystemController.deleteReview);
