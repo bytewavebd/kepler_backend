@@ -32,24 +32,22 @@ exports.postSlider = async (req, res) => {
   const heading = req.body.heading;
   const description = req.body.description;
   const slot = req.body.slot;
-  try {
-    const uploadPromises = req.files.map(async (file) => {
-      const storageRef = ref(
-        storage,
-        `files/${file.originalname + "" + dateTime}`
-      );
-      const metadata = {
-        contentType: file.mimetype,
-      };
+  // const uploadPromises = req.files.map(async (file) => {
+    const storageRef = ref(
+      storage,
+      `files/${file.originalname + "" + dateTime}`
+    );
+    const metadata = {
+      contentType: file.mimetype,
+    };
 
-      const snapshot = await uploadBytesResumable(
-        storageRef,
-        file.buffer,
-        metadata
-      );
-      const downloadURL = await getDownloadURL(snapshot.ref);
-
-      // Additional data for each file (customize as needed)
+    const snapshot = await uploadBytesResumable(
+      storageRef,
+      file.buffer,
+      metadata
+    );
+    const downloadURL = await getDownloadURL(snapshot.ref);
+         // Additional data for each file (customize as needed)
 
       //   console.log(downloadURL)
       // You may want to modify the function postReviewSystem to handle an array of files
@@ -58,8 +56,12 @@ exports.postSlider = async (req, res) => {
       //   filename: `files/${file.originalname + "" + dateTime}`,
       // });
       console.log(images);
-    });
-    await Promise.all(uploadPromises);
+    // });
+  try {
+    
+
+ 
+    // await Promise.all(uploadPromises);
     await postSlider(downloadURL,`files/${file.originalname + "" + dateTime}`,slot);
     // Wait for all file uploads to complete
    
