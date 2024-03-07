@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const sliderSchema = new mongoose.Schema({
   images: [{ image: String, filename: String }],
+  slot:String,
   heading: String,
   description: String,
 });

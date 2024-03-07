@@ -1,7 +1,7 @@
 const slider = require("../modules/slider");
 
-exports.postSlider = async (images, heading, description) => {
-  const SliderItem = new slider({ images, heading, description });
+exports.postSlider = async (images,slot, heading, description) => {
+  const SliderItem = new slider({ images,slot, heading, description });
   const Slider = await SliderItem.save();
 
   return Slider;

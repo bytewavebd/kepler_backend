@@ -31,6 +31,7 @@ exports.postSlider = async (req, res) => {
   let images = []; 
   const heading = req.body.heading;
   const description = req.body.description;
+  const slot = req.body.slot;
   try {
     const uploadPromises = req.files.map(async (file) => {
       const storageRef = ref(
@@ -59,7 +60,7 @@ exports.postSlider = async (req, res) => {
       console.log(images);
     });
     await Promise.all(uploadPromises);
-    await postSlider(images, heading, description);
+    await postSlider(images,slot, heading, description);
     // Wait for all file uploads to complete
    
     //   const data = await postReviewSystem(downloadURL,`files/${req.file.originalname + "" + dateTime}`,reviewerName,rating,comment);
