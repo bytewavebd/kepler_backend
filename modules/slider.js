@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
 const sliderSchema = new mongoose.Schema({
-  images: [{ image: String, filename: String }],
+  image: String,
+  filename: String,
   slot:String,
-  heading: String,
-  description: String,
+  // heading: String,
+  // description: String,
 });
 
 //   passportInfoSchema.index({ productId: 1, userId: 1 }, { unique: true });

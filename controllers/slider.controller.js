@@ -53,14 +53,14 @@ exports.postSlider = async (req, res) => {
 
       //   console.log(downloadURL)
       // You may want to modify the function postReviewSystem to handle an array of files
-      images.push({
-        image: downloadURL,
-        filename: `files/${file.originalname + "" + dateTime}`,
-      });
+      // images.push({
+      //   image: downloadURL,
+      //   filename: `files/${file.originalname + "" + dateTime}`,
+      // });
       console.log(images);
     });
     await Promise.all(uploadPromises);
-    await postSlider(images,slot, heading, description);
+    await postSlider(downloadURL,`files/${file.originalname + "" + dateTime}`,slot);
     // Wait for all file uploads to complete
    
     //   const data = await postReviewSystem(downloadURL,`files/${req.file.originalname + "" + dateTime}`,reviewerName,rating,comment);
