@@ -2,6 +2,7 @@ const express = require("express");
 const videoUrlController = require("../controllers/videoUrl.controller");
 const reviewSystemController = require("../controllers/reviewSystem.controller");
 const sliderController = require("../controllers/slider.controller");
+const eventController = require("../controllers/event.controller");
 const router = express.Router();
 const {initializeApp} = require("firebase/app");
 const { getStorage, ref, getDownloadURL, uploadBytesResumable }=require("firebase/storage");
@@ -20,7 +21,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 // console.log(upload)
 //review crud
 router.post("/review/post", upload.single('filename'),reviewSystemController.postReviewsSystem);
-router.get("/review/get/all",verifyToken, reviewSystemController.getAllReviews);
+router.get("/review/get/all", reviewSystemController.getAllReviews);
 router.get("/review/get/:id", reviewSystemController.getSpecificReview);
 // router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
 router.delete("/review/delete/:id", reviewSystemController.deleteReview);
@@ -36,5 +37,13 @@ router.delete("/videos/delete/:id", videoUrlController.deleteVideosUrl);
 router.post("/slider/post", upload.array('filename'), sliderController.postSlider);
 router.get("/slider/get/all", sliderController.getAllSlider);
 router.get("/slider/get/:id", sliderController.getSpecificSlider);
+
+//event crud
+router.post("/event/post", upload.single('filename'), eventController.postEvent);
+router.get("/event/get/all", eventController.getAllEvent);
+// router.get("/slider/get/:id", sliderController.getSpecificSlider);
+router.delete("/event/delete/:id", eventController.deleteEvent);
+
+
 
 module.exports = router;
