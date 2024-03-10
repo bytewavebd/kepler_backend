@@ -35,15 +35,15 @@ exports.postSlider = async (req, res) => {
   // const uploadPromises = req.files.map(async (file) => {
     const storageRef = ref(
       storage,
-      `files/${file.originalname + "" + dateTime}`
+      `files/${req.file.originalname + "" + dateTime}`
     );
     const metadata = {
-      contentType: file.mimetype,
+      contentType: req.file.mimetype,
     };
 
     const snapshot = await uploadBytesResumable(
       storageRef,
-      file.buffer,
+      req.file.buffer,
       metadata
     );
     const downloadURL = await getDownloadURL(snapshot.ref);
@@ -55,14 +55,14 @@ exports.postSlider = async (req, res) => {
       //   image: downloadURL,
       //   filename: `files/${file.originalname + "" + dateTime}`,
       // });
-      console.log(images);
+  
     // });
   try {
     
 
- 
+  
     // await Promise.all(uploadPromises);
-    await postSlider(downloadURL,`files/${file.originalname + "" + dateTime}`,slot);
+    await postSlider(downloadURL, `files/${req.file.originalname + "" + dateTime}`,slot);
     // Wait for all file uploads to complete
    
     //   const data = await postReviewSystem(downloadURL,`files/${req.file.originalname + "" + dateTime}`,reviewerName,rating,comment);
