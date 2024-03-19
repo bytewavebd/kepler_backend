@@ -37,7 +37,7 @@ router.delete("/videos/delete/:id", videoUrlController.deleteVideosUrl);
 router.post("/slider/post", upload.single('filename'), sliderController.postSlider);
 router.get("/slider/get/all", sliderController.getAllSlider);
 router.get("/slider/get/:id", sliderController.getSpecificSlider);
-
+router.delete("/slider/delete/:id", sliderController.deletePhoto);
 //event crud
 router.post("/event/post", upload.single('filename'), eventController.postEvent);
 router.get("/event/get/all", eventController.getAllEvent);
