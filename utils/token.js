@@ -11,5 +11,5 @@ exports.generateToken = (userInfo) => {
     expiresIn: "7days"
   });
 
-  return token;
+  return "Bearer " + token;
 };

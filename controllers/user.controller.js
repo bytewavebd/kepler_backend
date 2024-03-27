@@ -118,7 +118,7 @@ exports.login = async (req, res) => {
     // }
 
     const token = generateToken(user);
-
+    console.log(token)
     const { ...others } = user.toObject();
 
     res.status(200).json({
