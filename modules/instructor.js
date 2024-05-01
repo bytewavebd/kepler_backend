@@ -7,19 +7,27 @@ const instructorInfoSchema = new mongoose.Schema(
     name: String,
     email: String,
     batchNo: String,
-    slots: [
-            {
-                slot: {
-                type: String,
-                required: true
-                },
-                file: {
-                type: String,
-                required: true
-                }
-          }
-        ]
-
+    fileUpload: [
+      {
+        title: String,
+        image: String,
+        filename: String,
+        slot: String,
+      },
+    ],
+    urlUpload: [
+      {
+        title: {
+          type: String,
+        },
+        url: {
+          type: String,
+        },
+        slot: {
+          type: String,
+        },
+      },
+    ],
   },
   { timestamps: true }
 );

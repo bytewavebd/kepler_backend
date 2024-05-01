@@ -27,13 +27,6 @@ exports.postSlider = async (req, res) => {
   const dateTime = giveCurrentDateTime();
   const storage = getStorage();
 
-  // console.log("File successfully uploaded.");
-  // const image = req.file.originalname;
-  // const reviewerName=req.body.reviewerName;
-  // const rating=req.body.rating;
-  // const comment=req.body.comment;
-  // console.log(req.file)
-  let images = [];
   const heading = req.body.heading;
   const description = req.body.description;
   const slot = req.body.slot;
