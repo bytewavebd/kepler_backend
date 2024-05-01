@@ -72,5 +72,6 @@ router.put("/instructor/updateUrl/:id", instructorController.updateUrl);
 router.put("/instructor/updateFile/:id",upload.single("filename"), instructorController.updateFile);
 router.delete("/instructor/delete/:id", instructorController.deleteInstructor);
 router.delete("/instructor/updateUrl/delete/:instructorId/:urlUploadId", instructorController.deleteInstructorUrl);
+router.delete("/instructor/updatefile/delete/:instructorId/:fileUploadId", instructorController.deleteInstructorFile);
 
 module.exports = router;

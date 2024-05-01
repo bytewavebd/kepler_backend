@@ -170,3 +170,38 @@ exports.updateFile = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+exports.deleteInstructorFile = async (req, res) => {
+  const { instructorId, fileUploadId } = req.params;
+
+  try {
+    // Find the instructor by ID
+    const instructor = await Instructor.findById(instructorId);
+
+    if (!instructor) {
+      return res.status(404).json({ error: "Instructor not found" });
+    }
+
+    // Find the index of the urlUpload item to delete
+    const index = instructor.fileUpload.findIndex(
+      (upload) => upload._id == fileUploadId
+    );
+
+    if (index === -1) {
+      return res.status(404).json({ error: "fileUpload item not found" });
+    }
+
+    // Remove the urlUpload item from the array
+    instructor.fileUpload.splice(index, 1);
+
+    // Save the updated instructor information
+    await instructor.save();
+
+    res
+      .status(200)
+      .json({ message: "fileUpload item deleted successfully", instructor });
+  } catch (err) {
+    console.error("Error deleting urlUpload item:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};

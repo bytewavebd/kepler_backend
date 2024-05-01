@@ -72,55 +72,54 @@ exports.postSlider = async (req, res) => {
 };
 
 exports.getAllSlider = async (req, res) => {
-    try {
-      const data = await getAllSlider();
-  
-      res.send(data);
-    } catch (error) {
-      res.status(400).send({ error: error.message });
-    }
-  };
-  
-  exports.getSpecificSlider = async (req, res) => {
-    const { id } = req.params;
-    console.log(id);
-    try {
-      const data = await getSpecificSlider(id);
-  
-      res.send(data);
-    } catch (error) {
-      res.status(400).send({ error: error.message });
-    }
-  };
+  try {
+    const data = await getAllSlider();
 
-  exports.deletePhoto = async (req, res) => {
-    const { id } = req.params;
+    res.send(data);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+};
 
-    console.log(req)
+exports.getSpecificSlider = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    const data = await getSpecificSlider(id);
 
-    try {
-         // Get the download URL for the review to obtain the file path
-         const review = await getSpecificSlider(id);
-         console.log(review[0].filename);
-         const filePath = review[0].filename; // Adjust this based on your data structure
-     
-         // Create a reference to the file in Firebase Storage
-         const storage = getStorage();
-         const fileRef = ref(storage, filePath);
-     
-         // Delete the file from Firebase Storage
-         await deleteObject(fileRef);
-     
-         // Delete the review from your database
-         const deletedItem = await deletePhoto(id);
-     
-         if (!deletedItem) {
-           return res.status(404).send({ error: "Item not found" });
-         }
-     
-         res.status(200).send({ message: "Item removed" });
-    } catch (error) {
-      res.status(400).send({ error: error.message });
+    res.send(data);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+};
+
+exports.deletePhoto = async (req, res) => {
+  const { id } = req.params;
+
+  console.log(req);
+
+  try {
+    // Get the download URL for the review to obtain the file path
+    const review = await getSpecificSlider(id);
+    console.log(review[0].filename);
+    const filePath = review[0].filename; // Adjust this based on your data structure
+
+    // Create a reference to the file in Firebase Storage
+    const storage = getStorage();
+    const fileRef = ref(storage, filePath);
+
+    // Delete the file from Firebase Storage
+    await deleteObject(fileRef);
+
+    // Delete the review from your database
+    const deletedItem = await deletePhoto(id);
+
+    if (!deletedItem) {
+      return res.status(404).send({ error: "Item not found" });
     }
-  };
-  
+
+    res.status(200).send({ message: "Item removed" });
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+};
