@@ -4,6 +4,7 @@ const reviewSystemController = require("../controllers/reviewSystem.controller")
 const sliderController = require("../controllers/slider.controller");
 const eventController = require("../controllers/event.controller");
 const instructorController = require("../controllers/instructor.controller");
+const freeConsultancyController = require("../controllers/freeConsultancy.controller");
 
 const router = express.Router();
 const { initializeApp } = require("firebase/app");
@@ -69,9 +70,27 @@ router.post("/instructor/post", instructorController.postInstructor);
 router.get("/instructor/get/all", instructorController.getAllInstructor);
 // router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
 router.put("/instructor/updateUrl/:id", instructorController.updateUrl);
-router.put("/instructor/updateFile/:id",upload.single("filename"), instructorController.updateFile);
+router.put(
+  "/instructor/updateFile/:id",
+  upload.single("filename"),
+  instructorController.updateFile
+);
 router.delete("/instructor/delete/:id", instructorController.deleteInstructor);
-router.delete("/instructor/updateUrl/delete/:instructorId/:urlUploadId", instructorController.deleteInstructorUrl);
-router.delete("/instructor/updatefile/delete/:instructorId/:fileUploadId", instructorController.deleteInstructorFile);
+router.delete(
+  "/instructor/updateUrl/delete/:instructorId/:urlUploadId",
+  instructorController.deleteInstructorUrl
+);
+router.delete(
+  "/instructor/updatefile/delete/:instructorId/:fileUploadId",
+  instructorController.deleteInstructorFile
+);
+
+
+//free consultancy crud
+router.post("/freeConsultancy/post", freeConsultancyController.postFreeConsultancy);
+router.get("/freeConsultancy/get/all", freeConsultancyController.getAllFreeConsultancy);
+// router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
+// router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
+router.delete("/freeConsultancy/delete/:id", freeConsultancyController.deleteFreeConsultancy);
 
 module.exports = router;

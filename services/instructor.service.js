@@ -1,10 +1,10 @@
 const Instructor = require("../modules/instructor");
 
 exports.addInstructor = async (data) => {
-  // console.log(image);
+
   const instructorPost = new Instructor(data);
   const instructor = await instructorPost.save();
-  console.log(instructor);
+
   return instructor;
 };
 
