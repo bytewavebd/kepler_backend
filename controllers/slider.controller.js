@@ -3,6 +3,8 @@ const {
   postSlider,
   getAllSlider,
   getSpecificSlider,
+  deletePhoto,
+  deletePhotoSlider,
 } = require("../services/slider.service");
 
 const {
@@ -96,23 +98,24 @@ exports.getSpecificSlider = async (req, res) => {
 exports.deletePhoto = async (req, res) => {
   const { id } = req.params;
 
-  console.log(req);
+  console.log(id);
 
   try {
     // Get the download URL for the review to obtain the file path
     const review = await getSpecificSlider(id);
-    console.log(review[0].filename);
-    const filePath = review[0].filename; // Adjust this based on your data structure
-
-    // Create a reference to the file in Firebase Storage
-    const storage = getStorage();
-    const fileRef = ref(storage, filePath);
-
-    // Delete the file from Firebase Storage
-    await deleteObject(fileRef);
-
+ 
     // Delete the review from your database
-    const deletedItem = await deletePhoto(id);
+    const deletedItem = await deletePhotoSlider(id);
+       // console.log(review[0].filename);
+       const filePath = review[0].filename; // Adjust this based on your data structure
+
+       // Create a reference to the file in Firebase Storage
+       const storage = getStorage();
+       const fileRef = ref(storage, filePath);
+   
+       // Delete the file from Firebase Storage
+       await deleteObject(fileRef);
+   
 
     if (!deletedItem) {
       return res.status(404).send({ error: "Item not found" });

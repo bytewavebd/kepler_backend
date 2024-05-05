@@ -16,7 +16,8 @@ exports.getSpecificSlider= async (_id) => {
     return specificSlider;
   };
   
-  exports.deletePhoto = async (_id) => {
+  exports.deletePhotoSlider = async (_id) => {
+    console.log("fdsfs")
     const deletedPhoto = await slider.findByIdAndRemove({ _id });
     return deletedPhoto;
 
