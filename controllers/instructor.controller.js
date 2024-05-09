@@ -63,6 +63,7 @@ exports.deleteInstructor = async (req, res) => {
 exports.updateUrl = async (req, res) => {
   const instructorId = req.params.id;
   const { title, url, slot } = req.body;
+  
 
   try {
     // Find the instructor by ID
