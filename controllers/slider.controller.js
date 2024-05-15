@@ -103,19 +103,18 @@ exports.deletePhoto = async (req, res) => {
   try {
     // Get the download URL for the review to obtain the file path
     const review = await getSpecificSlider(id);
- 
+
     // Delete the review from your database
     const deletedItem = await deletePhotoSlider(id);
-       // console.log(review[0].filename);
-       const filePath = review[0].filename; // Adjust this based on your data structure
+    // console.log(review[0].filename);
+    const filePath = review[0].filename; // Adjust this based on your data structure
 
-       // Create a reference to the file in Firebase Storage
-       const storage = getStorage();
-       const fileRef = ref(storage, filePath);
-   
-       // Delete the file from Firebase Storage
-       await deleteObject(fileRef);
-   
+    // Create a reference to the file in Firebase Storage
+    const storage = getStorage();
+    const fileRef = ref(storage, filePath);
+
+    // Delete the file from Firebase Storage
+    await deleteObject(fileRef);
 
     if (!deletedItem) {
       return res.status(404).send({ error: "Item not found" });
