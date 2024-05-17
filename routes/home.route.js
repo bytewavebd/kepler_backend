@@ -5,6 +5,7 @@ const sliderController = require("../controllers/slider.controller");
 const eventController = require("../controllers/event.controller");
 const instructorController = require("../controllers/instructor.controller");
 const freeConsultancyController = require("../controllers/freeConsultancy.controller");
+const mockTestController = require("../controllers/mockTest.controller");
 
 const router = express.Router();
 const { initializeApp } = require("firebase/app");
@@ -92,5 +93,13 @@ router.get("/freeConsultancy/get/all", freeConsultancyController.getAllFreeConsu
 // router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
 // router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
 router.delete("/freeConsultancy/delete/:id", freeConsultancyController.deleteFreeConsultancy);
+
+
+// Mock test crud
+router.post("/mockTest/post", mockTestController.postMockTest);
+router.get("/mockTest/get/all", mockTestController.getAllMockTest);
+// // router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
+// // router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
+router.delete("/mockTest/delete/:id", mockTestController.deleteMockTest);
 
 module.exports = router;
