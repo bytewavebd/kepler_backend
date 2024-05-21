@@ -12,6 +12,7 @@ const {
   uploadBytesResumable,
   deleteObject, // Import deleteObject from @google-cloud/storage
 } = require("firebase/storage");
+const instructorInfo = require("../modules/instructor");
 
 const giveCurrentDateTime = () => {
   const today = new Date();
@@ -40,6 +41,24 @@ exports.getAllInstructor = async (req, res) => {
     res.send(data);
   } catch (error) {
     res.status(400).send({ error: error.message });
+  }
+};
+
+exports.getSpecificBatchAndEmail = async (req, res) => {
+  try {
+    const { batchNo, email } = req.params;
+    // Finding a specific document based on batchNo and email
+    const result = await instructorInfo.findOne({ batchNo, email });
+    
+    // if (result) {
+    //   console.log('Record found:', result);
+    // } else {
+    //   console.log('No record found for the specified batchNo and email');
+    // }
+    res.send(result);
+    // return result;
+  } catch (error) {
+    console.error('Error finding the record:', error);
   }
 };
 

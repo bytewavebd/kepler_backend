@@ -6,6 +6,7 @@ const eventController = require("../controllers/event.controller");
 const instructorController = require("../controllers/instructor.controller");
 const freeConsultancyController = require("../controllers/freeConsultancy.controller");
 const mockTestController = require("../controllers/mockTest.controller");
+const courseRegistration = require("../controllers/courseRegistration.controller");
 
 const router = express.Router();
 const { initializeApp } = require("firebase/app");
@@ -69,7 +70,7 @@ router.delete("/event/delete/:id", eventController.deleteEvent);
 //instructor crud
 router.post("/instructor/post", instructorController.postInstructor);
 router.get("/instructor/get/all", instructorController.getAllInstructor);
-// router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
+router.get("/instructor/get/:batchNo/:email", instructorController.getSpecificBatchAndEmail);
 router.put("/instructor/updateUrl/:id", instructorController.updateUrl);
 router.put(
   "/instructor/updateFile/:id",
@@ -101,5 +102,13 @@ router.get("/mockTest/get/all", mockTestController.getAllMockTest);
 // // router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
 // // router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
 router.delete("/mockTest/delete/:id", mockTestController.deleteMockTest);
+
+
+// course registration crud
+router.post("/courseRegistration/post", courseRegistration.postCourseRegistration);
+router.get("/courseRegistration/get/all", mockTestController.getAllMockTest);
+// // router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
+// // router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
+router.delete("/courseRegistration/delete/:id", mockTestController.deleteMockTest);
 
 module.exports = router;

@@ -8,6 +8,7 @@ const mockTestRegistrationSchema = new mongoose.Schema(
     phoneNumber: String,
     examType: String,
     totalFee: String,
+    paid: String
   },
   { timestamps: true }
 );
