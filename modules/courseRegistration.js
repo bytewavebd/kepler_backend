@@ -9,7 +9,7 @@ const courseRegistrationSchema = new mongoose.Schema(
     region: String,
     email: String,
     phoneNumber: String,
-    dob: String,
+    age: String,
     group: String,
     board: String,
     courseType: String,

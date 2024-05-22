@@ -8,7 +8,7 @@ exports.postCourseRegistration = async (req, res) => {
   try {
     const data = await addCourseRegistration(req.body);
 
-    res.status(200).send({ message: "mock test added successfully" });
+    res.status(200).send({ message: "course registration added successfully" });
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
