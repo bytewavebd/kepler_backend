@@ -1,4 +1,4 @@
-const { addMockTest, getAllMockTest, deleteMockTestbyId } = require("../services/mockTest.service");
+const { addMockTest, getAllMockTest, deleteMockTestbyId, findMockTestByEmail } = require("../services/mockTest.service");
 
 exports.postMockTest = async (req, res) => {
   try {
@@ -19,6 +19,20 @@ exports.getAllMockTest = async (req, res) => {
     res.status(400).send({ error: error.message });
   }
 };
+
+exports.getMockTestByEmail = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const data = await findMockTestByEmail(email);
+
+    res.send(data);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+};
+
+
+
 
 exports.deleteMockTest = async (req, res) => {
   const { id } = req.params;

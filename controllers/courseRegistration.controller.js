@@ -2,6 +2,7 @@ const {
   addCourseRegistration,
   getAllCourseRegistrations,
   deleteCourseRegistrationbyId,
+  findCourseRegistrationsByEmail,
 } = require("../services/courseRegistration.service");
 
 exports.postCourseRegistration = async (req, res) => {
@@ -17,6 +18,16 @@ exports.postCourseRegistration = async (req, res) => {
 exports.getAllCourseRegistration = async (req, res) => {
   try {
     const data = await getAllCourseRegistrations();
+
+    res.send(data);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+};
+exports.getCourseRegistrationByEmail = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const data = await findCourseRegistrationsByEmail(email);
 
     res.send(data);
   } catch (error) {

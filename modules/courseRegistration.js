@@ -14,7 +14,7 @@ const courseRegistrationSchema = new mongoose.Schema(
     board: String,
     courseType: String,
     totalFee: String,
-    paid: String
+    paid: String,
   },
   { timestamps: true }
 );

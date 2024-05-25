@@ -99,16 +99,17 @@ router.delete("/freeConsultancy/delete/:id", freeConsultancyController.deleteFre
 // Mock test crud
 router.post("/mockTest/post", mockTestController.postMockTest);
 router.get("/mockTest/get/all", mockTestController.getAllMockTest);
-// // router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
+router.get("/mockTest/get/:email", mockTestController.getMockTestByEmail);
 // // router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
 router.delete("/mockTest/delete/:id", mockTestController.deleteMockTest);
 
 
 // course registration crud
 router.post("/courseRegistration/post", courseRegistration.postCourseRegistration);
-router.get("/courseRegistration/get/all", mockTestController.getAllMockTest);
+router.get("/courseRegistration/get/all",courseRegistration.getAllCourseRegistration);
+router.get("/courseRegistration/get/:email",courseRegistration.getCourseRegistrationByEmail);
 // // router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
 // // router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
-router.delete("/courseRegistration/delete/:id", mockTestController.deleteMockTest);
+router.delete("/courseRegistration/delete/:id", courseRegistration.deleteCourseRegistration);
 
 module.exports = router;

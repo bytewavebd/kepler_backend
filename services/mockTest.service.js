@@ -12,6 +12,10 @@ exports.getAllMockTest = async () => {
   return getAllMockTest;
 };
 
+exports.findMockTestByEmail = async (email) => {
+  return await mockTestRegistration.find({ email });
+};
+
 exports.deleteMockTestbyId = async (_id) => {
   const deletedMockTest = await mockTestRegistration.findByIdAndRemove({ _id });
   return deletedMockTest;

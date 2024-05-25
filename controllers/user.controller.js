@@ -20,10 +20,10 @@ exports.signup = async (req, res) => {
     // const userPhone = await findUserByPhone(req.body.phone);
 
     const email = await findUserByEmail(req.body.email);
-    console.log(req);
+
     if (!email) {
       const user = await signupService(req.body);
-      console.log("user", user);
+
 
       return res.status(200).json({
         status: "success",
@@ -118,7 +118,7 @@ exports.login = async (req, res) => {
     // }
 
     const token = generateToken(user);
-    console.log(token)
+    
     const { ...others } = user.toObject();
 
     res.status(200).json({
@@ -139,9 +139,7 @@ exports.login = async (req, res) => {
 exports.phoneLogin = async (req, res) => {
   try {
     const phone = req.params.phone;
-    // console.log(req.params.phone);
-    // console.log(phone);
-
+  
     if (!phone) {
       return res.status(401).json({
         status: "fail",
@@ -150,7 +148,7 @@ exports.phoneLogin = async (req, res) => {
     }
 
     const user = await findUserByPhone(phone);
-    // console.log(user);
+ 
     if (!user) {
       return res.status(401).json({
         status: "fail",
@@ -181,8 +179,10 @@ exports.phoneLogin = async (req, res) => {
 exports.getMe = async (req, res) => {
   try {
     const email = req.params.email;
+  
     const user = await findUserByEmail(email);
-    // console.log(user);
+    
+
     res.status(200).json({
       status: "success",
       data: user,
@@ -198,9 +198,9 @@ exports.getMeByMailandPhone = async (req, res) => {
   try {
     const email = req.params.email;
     const phone = req.params.phone;
-    // console.log(phone, email)
+
     const user = await findUserByEmailandPhone(email, phone);
-    // console.log(user);
+
     res.status(200).json({
       status: "success",
       data: user,
@@ -261,7 +261,7 @@ exports.updatePhoneNumber = async (req, res) => {
       });
     }
 
-    // console.log(user);
+
     if (!user) {
       return res.status(401).json({
         status: "fail",

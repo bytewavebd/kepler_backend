@@ -4,11 +4,13 @@ const courseRegistration = require("../modules/courseRegistration");
 
 exports.addCourseRegistration = async (data) => {
   const courseRegistrationPost = new courseRegistration(data);
-  const courseRegistration = await courseRegistrationPost.save();
+  const addCourseRegistration = await courseRegistrationPost.save();
 
-  return courseRegistration;
+  return addCourseRegistration;
 };
-
+exports.findCourseRegistrationsByEmail = async (email) => {
+  return await courseRegistration.find({ email });
+};
 exports.getAllCourseRegistrations = async (data) => {
   const allCourseRegistration = await courseRegistration.find({});
   return allCourseRegistration;
