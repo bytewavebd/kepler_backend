@@ -2,6 +2,7 @@ const {
   addFreeConsultancy,
   getAllFreeConsultancy,
   deleteFreeConsultancy,
+  findFreeConsultancyByEmail,
 } = require("../services/freeConsultancy.service");
 
 exports.postFreeConsultancy = async (req, res) => {
@@ -23,6 +24,18 @@ exports.getAllFreeConsultancy = async (req, res) => {
     res.status(400).send({ error: error.message });
   }
 };
+
+exports.getFreeConsultancyByEmail = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const data = await findFreeConsultancyByEmail(email);
+
+    res.send(data);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+};
+
 
 exports.deleteFreeConsultancy = async (req, res) => {
   const { id } = req.params;

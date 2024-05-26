@@ -13,6 +13,10 @@ exports.getAllFreeConsultancy = async () => {
   return getAllFreeConsultancy;
 };
 
+exports.findFreeConsultancyByEmail = async (email) => {
+  return await FreeConsultancy.find({ email });
+};
+
 exports.deleteFreeConsultancy = async (_id) => {
     const deletedFreeConsultancy = await FreeConsultancy.findByIdAndRemove({ _id });
     return deletedFreeConsultancy;

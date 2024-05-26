@@ -91,7 +91,7 @@ router.delete(
 //free consultancy crud
 router.post("/freeConsultancy/post", freeConsultancyController.postFreeConsultancy);
 router.get("/freeConsultancy/get/all", freeConsultancyController.getAllFreeConsultancy);
-// router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
+router.get("/freeConsultancy/get/:email", freeConsultancyController.getFreeConsultancyByEmail);
 // router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
 router.delete("/freeConsultancy/delete/:id", freeConsultancyController.deleteFreeConsultancy);
 
