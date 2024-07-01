@@ -6,6 +6,13 @@ const {
   findUserByEmailandPhone,
 } = require("../services/user.service");
 const { generateToken } = require("../utils/token");
+const {
+  getStorage,
+  ref,
+  getDownloadURL,
+  uploadBytesResumable,
+  deleteObject, // Import deleteObject from @google-cloud/storage
+} = require("firebase/storage");
 
 const jwt = require("jsonwebtoken");
 
@@ -213,14 +220,76 @@ exports.getMeByMailandPhone = async (req, res) => {
   }
 };
 
+
+const giveCurrentDateTime = () => {
+  const today = new Date();
+  const date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  const time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  const dateTime = date + "" + time;
+  return dateTime;
+};
+
 exports.updateUser = async (req, res) => {
+ 
   try {
     const email = req.params.email;
     const user = await findUserByEmail(email);
-
+console.log(user)
     user.userName = req.body.userName;
-    user.phone = req.body.phone;
-    user.gender = req.body.gender;
+
+   
+
+    if (!user) {
+      return res.status(401).json({
+        status: "fail",
+        error: "No user found. Please create an account",
+      });
+    }
+
+    await user.save();
+    res.status(200).json({
+      status: "User profile updated successfully",
+      data: user,
+    });
+    // res.json({ message: "User profile updated successfully" });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      error,
+    });
+  }
+};
+exports.updateProfilePicture = async (req, res) => {
+  const dateTime = giveCurrentDateTime();
+  const storage = getStorage();
+
+
+  // const uploadPromises = req.files.map(async (file) => {
+  const storageRef = ref(
+    storage,
+    `files/${req.file.originalname + "" + dateTime}`
+  );
+  const metadata = {
+    contentType: req.file.mimetype,
+  };
+
+  const snapshot = await uploadBytesResumable(
+    storageRef,
+    req.file.buffer,
+    metadata
+  );
+  const image = await getDownloadURL(snapshot.ref);
+  // const filename = `files/${req.file.originalname + "" + dateTime}`;
+  console.log(image)
+  try {
+    const email = req.params.email;
+    const user = await findUserByEmail(email);
+console.log(user)
+    // user.userName = req.body.userName;
+    user.imageURL = image;
+   
 
     if (!user) {
       return res.status(401).json({
