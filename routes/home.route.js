@@ -109,7 +109,7 @@ router.post("/courseRegistration/post", courseRegistration.postCourseRegistratio
 router.get("/courseRegistration/get/all",courseRegistration.getAllCourseRegistration);
 router.get("/courseRegistration/get/:email",courseRegistration.getCourseRegistrationByEmail);
 // // router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
-// // router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
+router.put("/courseRegistration/add-instructor/:courseRegistrationId", courseRegistration.addInstructorInCourseRegistration);
 router.delete("/courseRegistration/delete/:id", courseRegistration.deleteCourseRegistration);
 
 module.exports = router;

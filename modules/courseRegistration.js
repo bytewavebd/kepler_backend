@@ -15,6 +15,10 @@ const courseRegistrationSchema = new mongoose.Schema(
     courseType: String,
     totalFee: String,
     paid: String,
+    instructor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "instructorInfo",
+    },
   },
   { timestamps: true }
 );
