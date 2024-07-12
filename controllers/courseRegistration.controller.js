@@ -1,3 +1,5 @@
+const courseRegistration = require("../modules/courseRegistration");
+const instructorInfo = require("../modules/instructor");
 const {
   addCourseRegistration,
   getAllCourseRegistrations,
@@ -40,21 +42,26 @@ exports.addInstructorInCourseRegistration = async (req, res) => {
     const { courseRegistrationId } = req.params;
 
     // Validate that both instructor and course registration exist
-    const instructor = await InstructorInfo.findById(instructorId);
+    const instructor = await instructorInfo.findById(instructorId);
+
     if (!instructor) {
-      return res.status(404).send('Instructor not found');
+      return res.status(404).send("Instructor not found");
     }
 
-    const courseRegistration = await CourseRegistration.findById(courseRegistrationId);
-    if (!courseRegistration) {
-      return res.status(404).send('Course registration not found');
+    const getSpecificCourseRegistration = await courseRegistration.findById(
+      courseRegistrationId
+    );
+
+    if (!getSpecificCourseRegistration) {
+      return res.status(404).send("Course registration not found");
     }
 
     // Update course registration with the instructor
-    courseRegistration.instructor = instructorId;
-    await courseRegistration.save();
+    getSpecificCourseRegistration.instructorId = instructor._id;
 
-    res.status(200).send(courseRegistration);
+    await getSpecificCourseRegistration.save();
+
+    res.status(200).send(getSpecificCourseRegistration);
   } catch (error) {
     res.status(500).send(error.message);
   }

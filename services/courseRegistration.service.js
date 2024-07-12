@@ -9,10 +9,10 @@ exports.addCourseRegistration = async (data) => {
   return addCourseRegistration;
 };
 exports.findCourseRegistrationsByEmail = async (email) => {
-  return await courseRegistration.find({ email });
+  return await courseRegistration.find({ email }).populate('instructorId');
 };
 exports.getAllCourseRegistrations = async (data) => {
-  const allCourseRegistration = await courseRegistration.find({});
+  const allCourseRegistration = await courseRegistration.find({}).populate('instructorId');
   return allCourseRegistration;
 };
 

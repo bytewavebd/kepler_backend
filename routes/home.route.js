@@ -29,6 +29,7 @@ initializeApp(config.firebaseConfig);
 // Setting up multer as a middleware to grab photo uploads
 const upload = multer({ storage: multer.memoryStorage() });
 
+
 //review crud
 router.post(
   "/review/post",
@@ -40,12 +41,14 @@ router.get("/review/get/:id", reviewSystemController.getSpecificReview);
 // router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
 router.delete("/review/delete/:id", reviewSystemController.deleteReview);
 
+
 //videosUrl crud
 router.post("/videos/post", videoUrlController.postVideosUrl);
 router.get("/videos/get/all", videoUrlController.getAllVideosUrl);
 router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
 router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
 router.delete("/videos/delete/:id", videoUrlController.deleteVideosUrl);
+
 
 //slider crud
 router.post(
@@ -57,6 +60,7 @@ router.get("/slider/get/all", sliderController.getAllSlider);
 router.get("/slider/get/:id", sliderController.getSpecificSlider);
 router.delete("/slider/delete/:id", sliderController.deletePhoto);
 
+
 //event crud
 router.post(
   "/event/post",
@@ -67,10 +71,14 @@ router.get("/event/get/all", eventController.getAllEvent);
 // router.get("/slider/get/:id", sliderController.getSpecificSlider);
 router.delete("/event/delete/:id", eventController.deleteEvent);
 
+
 //instructor crud
 router.post("/instructor/post", instructorController.postInstructor);
 router.get("/instructor/get/all", instructorController.getAllInstructor);
-router.get("/instructor/get/:batchNo/:email", instructorController.getSpecificBatchAndEmail);
+router.get(
+  "/instructor/get/:batchNo/:email",
+  instructorController.getSpecificBatchAndEmail
+);
 router.put("/instructor/updateUrl/:id", instructorController.updateUrl);
 router.put(
   "/instructor/updateFile/:id",
@@ -89,11 +97,23 @@ router.delete(
 
 
 //free consultancy crud
-router.post("/freeConsultancy/post", freeConsultancyController.postFreeConsultancy);
-router.get("/freeConsultancy/get/all", freeConsultancyController.getAllFreeConsultancy);
-router.get("/freeConsultancy/get/:email", freeConsultancyController.getFreeConsultancyByEmail);
+router.post(
+  "/freeConsultancy/post",
+  freeConsultancyController.postFreeConsultancy
+);
+router.get(
+  "/freeConsultancy/get/all",
+  freeConsultancyController.getAllFreeConsultancy
+);
+router.get(
+  "/freeConsultancy/get/:email",
+  freeConsultancyController.getFreeConsultancyByEmail
+);
 // router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
-router.delete("/freeConsultancy/delete/:id", freeConsultancyController.deleteFreeConsultancy);
+router.delete(
+  "/freeConsultancy/delete/:id",
+  freeConsultancyController.deleteFreeConsultancy
+);
 
 
 // Mock test crud
@@ -105,11 +125,27 @@ router.delete("/mockTest/delete/:id", mockTestController.deleteMockTest);
 
 
 // course registration crud
-router.post("/courseRegistration/post", courseRegistration.postCourseRegistration);
-router.get("/courseRegistration/get/all",courseRegistration.getAllCourseRegistration);
-router.get("/courseRegistration/get/:email",courseRegistration.getCourseRegistrationByEmail);
+router.post(
+  "/courseRegistration/post",
+  courseRegistration.postCourseRegistration
+);
+router.get(
+  "/courseRegistration/get/all",
+  courseRegistration.getAllCourseRegistration
+);
+router.get(
+  "/courseRegistration/get/:email",
+  courseRegistration.getCourseRegistrationByEmail
+);
 // // router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
-router.put("/courseRegistration/add-instructor/:courseRegistrationId", courseRegistration.addInstructorInCourseRegistration);
-router.delete("/courseRegistration/delete/:id", courseRegistration.deleteCourseRegistration);
+router.put(
+  "/courseRegistration/add-instructor/:courseRegistrationId",
+  courseRegistration.addInstructorInCourseRegistration
+);
+router.delete(
+  "/courseRegistration/delete/:id",
+  courseRegistration.deleteCourseRegistration
+);
+
 
 module.exports = router;
