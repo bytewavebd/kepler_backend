@@ -7,7 +7,7 @@ const app = require("./app");
 // database connection
 // DBConnect();
 mongoose.connect(process.env.DATABASE_ECO,{useNewUrlParser:true, useUnifiedTopology: true}).then(()=>{
-  console.log(`Database connection is successful 🛢` .red.bold);
+  console.log(`Database connection is successful 🛢` .grey.bold);
 })
 // console.log(process.env.DATABASE_ECO)
 // server
