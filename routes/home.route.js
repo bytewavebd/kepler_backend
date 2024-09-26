@@ -30,6 +30,11 @@ initializeApp(config.firebaseConfig);
 const upload = multer({ storage: multer.memoryStorage() });
 
 
+
+
+ 
+
+
 //review crud
 router.post(
   "/review/post",
@@ -148,4 +153,13 @@ router.delete(
 );
 
 
+//bksh payment
+router.post(
+  "/courseRegistration/bkash-checkout/post",
+  courseRegistration.postBkshPayment
+);
+router.get(
+  "/courseRegistration/bkash-callback",
+  courseRegistration.bkshCallback
+);
 module.exports = router;
