@@ -16,8 +16,9 @@ const courseRegistrationSchema = new mongoose.Schema(
     totalFee: String,
     paid: {
       type: Boolean,
-      default: false,  // Correcting to Boolean type with default value
+      default: false, // Correcting to Boolean type with default value
     },
+    transactionId: String,
     instructorId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "instructorInfo",
@@ -26,12 +27,9 @@ const courseRegistrationSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-
-
 const courseRegistration = mongoose.model(
   "courseRegistration",
   courseRegistrationSchema
 );
-
 
 module.exports = courseRegistration;

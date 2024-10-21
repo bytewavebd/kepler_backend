@@ -29,12 +29,6 @@ initializeApp(config.firebaseConfig);
 // Setting up multer as a middleware to grab photo uploads
 const upload = multer({ storage: multer.memoryStorage() });
 
-
-
-
- 
-
-
 //review crud
 router.post(
   "/review/post",
@@ -46,14 +40,12 @@ router.get("/review/get/:id", reviewSystemController.getSpecificReview);
 // router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
 router.delete("/review/delete/:id", reviewSystemController.deleteReview);
 
-
 //videosUrl crud
 router.post("/videos/post", videoUrlController.postVideosUrl);
 router.get("/videos/get/all", videoUrlController.getAllVideosUrl);
 router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
 router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
 router.delete("/videos/delete/:id", videoUrlController.deleteVideosUrl);
-
 
 //slider crud
 router.post(
@@ -65,7 +57,6 @@ router.get("/slider/get/all", sliderController.getAllSlider);
 router.get("/slider/get/:id", sliderController.getSpecificSlider);
 router.delete("/slider/delete/:id", sliderController.deletePhoto);
 
-
 //event crud
 router.post(
   "/event/post",
@@ -75,7 +66,6 @@ router.post(
 router.get("/event/get/all", eventController.getAllEvent);
 // router.get("/slider/get/:id", sliderController.getSpecificSlider);
 router.delete("/event/delete/:id", eventController.deleteEvent);
-
 
 //instructor crud
 router.post("/instructor/post", instructorController.postInstructor);
@@ -100,7 +90,6 @@ router.delete(
   instructorController.deleteInstructorFile
 );
 
-
 //free consultancy crud
 router.post(
   "/freeConsultancy/post",
@@ -120,14 +109,12 @@ router.delete(
   freeConsultancyController.deleteFreeConsultancy
 );
 
-
 // Mock test crud
 router.post("/mockTest/post", mockTestController.postMockTest);
 router.get("/mockTest/get/all", mockTestController.getAllMockTest);
 router.get("/mockTest/get/:email", mockTestController.getMockTestByEmail);
 // // router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
 router.delete("/mockTest/delete/:id", mockTestController.deleteMockTest);
-
 
 // course registration crud
 router.post(
@@ -142,7 +129,10 @@ router.get(
   "/courseRegistration/get/:email",
   courseRegistration.getCourseRegistrationByEmail
 );
-// // router.get("/videos/get/:id", videoUrlController.getSpecificVideosUrl);
+router.get(
+  "/courseRegistration/getById/:id",
+  courseRegistration.getCourseRegistrationById
+);
 router.put(
   "/courseRegistration/add-instructor/:courseRegistrationId",
   courseRegistration.addInstructorInCourseRegistration
@@ -152,8 +142,11 @@ router.delete(
   courseRegistration.deleteCourseRegistration
 );
 
-
-//bksh payment
+//bksh payment course
+router.post(
+  "/courseRegistration/bkashGrandToken/post",
+  courseRegistration.bkashGrandtoken
+);
 router.post(
   "/courseRegistration/bkash-checkout/post",
   courseRegistration.postBkshPayment
@@ -162,4 +155,20 @@ router.get(
   "/courseRegistration/bkash-callback",
   courseRegistration.bkshCallback
 );
+
+
+//bksh payment test
+
+router.post(
+  "/mockTest/bkash-checkout/post",
+  mockTestController.postBkshPayment
+);
+router.get(
+  "/mockTest/bkash-callback",
+  mockTestController.bkshCallback
+);
+
+
+
+
 module.exports = router;

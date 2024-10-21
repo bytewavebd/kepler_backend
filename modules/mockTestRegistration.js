@@ -8,7 +8,12 @@ const mockTestRegistrationSchema = new mongoose.Schema(
     phoneNumber: String,
     examType: String,
     totalFee: String,
-    paid: String
+    paid: String,
+    paid: {
+      type: Boolean,
+      default: false, // Correcting to Boolean type with default value
+    },
+    transactionId: String,
   },
   { timestamps: true }
 );

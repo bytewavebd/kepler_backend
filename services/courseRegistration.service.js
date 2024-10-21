@@ -11,6 +11,9 @@ exports.addCourseRegistration = async (data) => {
 exports.findCourseRegistrationsByEmail = async (email) => {
   return await courseRegistration.find({ email }).populate('instructorId');
 };
+exports.findCourseRegistrationsById = async (_id) => {
+  return await courseRegistration.findOne({ _id }).populate('instructorId');
+};
 exports.getAllCourseRegistrations = async (data) => {
   const allCourseRegistration = await courseRegistration.find({}).populate('instructorId');
   return allCourseRegistration;
