@@ -15,7 +15,9 @@ exports.getAllMockTest = async () => {
 exports.findMockTestByEmail = async (email) => {
   return await mockTestRegistration.find({ email });
 };
-
+exports.findMockTestById = async (_id) => {
+  return await mockTestRegistration.findOne({ _id });
+};
 exports.deleteMockTestbyId = async (_id) => {
   const deletedMockTest = await mockTestRegistration.findByIdAndRemove({ _id });
   return deletedMockTest;

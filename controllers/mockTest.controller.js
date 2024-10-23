@@ -1,7 +1,7 @@
 const { default: axios } = require("axios");
 const bkashGrandToken = require("../modules/bkashGrandToken");
 const mockTestRegistration = require("../modules/mockTestRegistration");
-const { addMockTest, getAllMockTest, deleteMockTestbyId, findMockTestByEmail } = require("../services/mockTest.service");
+const { addMockTest, getAllMockTest, deleteMockTestbyId, findMockTestByEmail, findMockTestById } = require("../services/mockTest.service");
 
 
 exports.postBkshPayment = async (req, res) => {
@@ -30,19 +30,19 @@ exports.postBkshPayment = async (req, res) => {
 
     id_token = data.id_token;
     //update refesh token
-    if (token_id[0].refresh_token != data.refresh_token) {
-      updateRefeshToken = await bkashGrandToken.findOneAndUpdate(
-        { _id: "66ff7f1d623f46dc92da742a" },
-        { refresh_token: data.refresh_token }
-      );
-    }
+    // if (token_id[0].refresh_token != data.refresh_token) {
+    //   updateRefeshToken = await bkashGrandToken.findOneAndUpdate(
+    //     { _id: "66ff7f1d623f46dc92da742a" },
+    //     { refresh_token: data.refresh_token }
+    //   );
+    // }
     if (token_id[0].id_token == data.id_token) {
       console.log("equal");
       const paymentDetails = {
         mode: "0011",
         payerReference: "0",
         callbackURL:
-          "http://localhost:8080/api/v1/home/mockTest/bkash-callback",
+          "https://kepler-backend.vercel.app/api/v1/home/mockTest/bkash-callback",
         merchantAssociationInfo: "MI05MID54RF09123456One",
         amount: totalFee || "0",
         currency: "BDT",
@@ -76,7 +76,7 @@ exports.postBkshPayment = async (req, res) => {
         mode: "0011",
         payerReference: "0",
         callbackURL:
-          "http://localhost:8080/api/v1/home/mockTest/bkash-callback",
+          "https://kepler-backend.vercel.app/api/v1/home/mockTest/bkash-callback",
         merchantAssociationInfo: "MI05MID54RF09123456One",
         amount: totalFee || "0",
         currency: "BDT",
@@ -132,7 +132,7 @@ exports.bkshCallback = async (req, res) => {
     };
 
     if (status === "cancel" || status === "failure") {
-      return res.redirect(`http://localhost:3000/error?message=${status}`);
+      return res.redirect(`https://www.keplerbd.org/error?message=${status}`);
     }
     if (status === "success")
       // result = await executePayment(bkashConfig, paymentID);
@@ -163,17 +163,17 @@ exports.bkshCallback = async (req, res) => {
       );
 
       return res.redirect(
-        `http://localhost:3000/success?id=${result?.data?.merchantInvoiceNumber}`
+        `https://www.keplerbd.org/success?id=${result?.data?.merchantInvoiceNumber}`
       );
     } else {
       return res.redirect(
-        `http://localhost:3000/error?message=${result?.data?.statusMessage}`
+        `https://www.keplerbd.org/error?message=${result?.data?.statusMessage}`
       );
     }
   } catch (e) {
     console.log(e);
     return res.redirect(
-      `http://localhost:3000/error?message=${result?.data?.statusMessage}`
+      `https://www.keplerbd.org/error?message=${result?.data?.statusMessage}`
     );
   }
 };
@@ -214,6 +214,16 @@ exports.getMockTestByEmail = async (req, res) => {
 };
 
 
+exports.getMockTestById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = await findMockTestById(id);
+
+    res.send(data);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+};
 
 
 exports.deleteMockTest = async (req, res) => {

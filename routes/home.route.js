@@ -113,6 +113,7 @@ router.delete(
 router.post("/mockTest/post", mockTestController.postMockTest);
 router.get("/mockTest/get/all", mockTestController.getAllMockTest);
 router.get("/mockTest/get/:email", mockTestController.getMockTestByEmail);
+router.get("/mockTest/getById/:id", mockTestController.getMockTestById);
 // // router.put("/videos/update/:id", videoUrlController.updateVideosUrl);
 router.delete("/mockTest/delete/:id", mockTestController.deleteMockTest);
 
@@ -156,19 +157,12 @@ router.get(
   courseRegistration.bkshCallback
 );
 
-
 //bksh payment test
 
 router.post(
   "/mockTest/bkash-checkout/post",
   mockTestController.postBkshPayment
 );
-router.get(
-  "/mockTest/bkash-callback",
-  mockTestController.bkshCallback
-);
-
-
-
+router.get("/mockTest/bkash-callback", mockTestController.bkshCallback);
 
 module.exports = router;
