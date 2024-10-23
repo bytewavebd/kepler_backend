@@ -184,7 +184,7 @@ exports.postBkshPayment = async (req, res) => {
 exports.bkshCallback = async (req, res) => {
   try {
     const { status, paymentID } = req.query;
-    // console.log(paymentID);
+    console.log(paymentID);
 
     // _id = "66ff7f1d623f46dc92da742a";
     const token_id = await bkashGrandToken.find({
@@ -230,12 +230,13 @@ exports.bkshCallback = async (req, res) => {
       return res.redirect(
         `https://www.keplerbd.org/success?id=${result?.data?.merchantInvoiceNumber}`
       );
+      
     } else {
       return res.redirect(
         `https://www.keplerbd.org/error?message=${result?.data?.statusMessage}`
       );
     }
-    
+
   } catch (e) {
     console.log(e);
     return res.redirect(
