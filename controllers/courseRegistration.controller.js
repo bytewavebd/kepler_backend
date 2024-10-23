@@ -74,6 +74,12 @@ const refreshBkashGrandtoken =async()=>{
 
 exports.postBkshPayment = async (req, res) => {
   try {
+
+    res.setHeader('Access-Control-Allow-Origin', 'https://www.keplerbd.org');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.sendStatus(200);
+    
     const token_id = await bkashGrandToken.find({
       _id: "66ff7f1d623f46dc92da742a",
     });
@@ -230,7 +236,7 @@ exports.bkshCallback = async (req, res) => {
       return res.redirect(
         `https://www.keplerbd.org/success?id=${result?.data?.merchantInvoiceNumber}`
       );
-      
+
     } else {
       return res.redirect(
         `https://www.keplerbd.org/error?message=${result?.data?.statusMessage}`
