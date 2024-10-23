@@ -75,11 +75,11 @@ const refreshBkashGrandtoken =async()=>{
 exports.postBkshPayment = async (req, res) => {
   try {
 
-    res.setHeader('Access-Control-Allow-Origin', 'https://www.keplerbd.org');
+    res.setHeader('Access-Control-Allow-Origin', 'https://www.keplerbd.org/api/v1/courseRegistration/bkashGrandToken/post');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.sendStatus(200);
-    
+
     const token_id = await bkashGrandToken.find({
       _id: "66ff7f1d623f46dc92da742a",
     });
