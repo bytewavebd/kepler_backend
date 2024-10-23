@@ -235,6 +235,7 @@ exports.bkshCallback = async (req, res) => {
         `https://www.keplerbd.org/error?message=${result?.data?.statusMessage}`
       );
     }
+    
   } catch (e) {
     console.log(e);
     return res.redirect(
