@@ -53,15 +53,15 @@ const refreshBkashGrandtoken =async()=>{
       {
         app_key: process.env.BKASH_CHECKOUT_URL_APP_KEY,
         app_secret: process.env.BKASH_CHECKOUT_URL_APP_SECRET,
-      },bkashConfig
-      // {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Accept: "application/json",
-      //     username: process.env.BKASH_CHECKOUT_URL_USER_NAME,
-      //     password: process.env.BKASH_CHECKOUT_URL_PASSWORD,
-      //   },
-      // }
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          username: process.env.BKASH_CHECKOUT_URL_USER_NAME,
+          password: process.env.BKASH_CHECKOUT_URL_PASSWORD,
+        },
+      }
     );
     bkashGrandToken.findOneAndUpdate(
       { _id: "66ff7f1d623f46dc92da742a" },
@@ -88,15 +88,15 @@ exports.postBkshPayment = async (req, res) => {
         app_key: process.env.BKASH_CHECKOUT_URL_APP_KEY,
         app_secret: process.env.BKASH_CHECKOUT_URL_APP_SECRET,
         refresh_token: token_id[0].refresh_token,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          username: process.env.BKASH_CHECKOUT_URL_USER_NAME,
-          password: process.env.BKASH_CHECKOUT_URL_PASSWORD,
-        },
-      }
+      },bkashConfig
+      // {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     Accept: "application/json",
+      //     username: process.env.BKASH_CHECKOUT_URL_USER_NAME,
+      //     password: process.env.BKASH_CHECKOUT_URL_PASSWORD,
+      //   },
+      // }
     );
     res
     .status(200)
