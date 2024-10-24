@@ -91,7 +91,7 @@ exports.postBkshPayment = async (req, res) => {
       },
       {
         headers: {
-          Host: process.env.BKASH_CHECKOUT_URL_BASE_URL,
+       
           "Content-Type": "application/json",
           Accept: "application/json",
           username: process.env.BKASH_CHECKOUT_URL_USER_NAME,
