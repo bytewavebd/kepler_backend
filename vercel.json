@@ -16,14 +16,8 @@
       }
     ],
     "functions": {
-    "api/test.js": {
-      "maxDuration": 50 
-    },
-    "api/*.js": {
-      "maxDuration": 50 
-    },
-    "src/api/*.js": {
-      "maxDuration": 50 
+      "app/api/**/*": {
+        "maxDuration": 30
+      }
     }
-  }
   }
