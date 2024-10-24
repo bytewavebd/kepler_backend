@@ -4,15 +4,15 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 app.use(express.json());
-// app.use(cors());
-const corsConfig ={
-   origin: '*',
-   credential: true,
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}
-app.options("",cors(corsConfig))
-app.use(cors(corsConfig));
+app.use(cors());
+// const corsConfig ={
+//    origin: '*',
+//    credential: true,
+//   methods: ['GET', 'POST', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization']
+// }
+// app.options("",cors(corsConfig))
+// app.use(cors(corsConfig));
 // app.use(cors({
 //   origin: 'https://www.keplerbd.org',
 //   methods: ['GET', 'POST', 'OPTIONS'],
