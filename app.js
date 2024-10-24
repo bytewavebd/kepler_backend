@@ -11,6 +11,7 @@ const corsConfig ={
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }
+app.options("",cors(corsConfig))
 app.use(cors(corsConfig));
 // app.use(cors({
 //   origin: 'https://www.keplerbd.org',
