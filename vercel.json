@@ -14,7 +14,13 @@
         "dest": "index.js",
         "methods":["GET", "POST", "OPTIONS"]
       }
-    ]
+    ],
+    
+      "functions": {
+        "app/api/**/*": {
+          "maxDuration": 5 
+      }
+      }
 
   
   }
