@@ -17,13 +17,13 @@
     ],
     "functions": {
     "api/test.js": {
-      "maxDuration": 30 // This function can run for a maximum of 30 seconds
+      "maxDuration": 60 // This function can run for a maximum of 30 seconds
     },
     "api/*.js": {
-      "maxDuration": 15 // This function can run for a maximum of 15 seconds
+      "maxDuration": 60 // This function can run for a maximum of 15 seconds
     },
     "src/api/*.js": {
-      "maxDuration": 25 // You must prefix functions in the src directory with /src/
+      "maxDuration": 60 // You must prefix functions in the src directory with /src/
     }
   }
   }
