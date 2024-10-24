@@ -88,20 +88,21 @@ exports.postBkshPayment = async (req, res) => {
         app_key: process.env.BKASH_CHECKOUT_URL_APP_KEY,
         app_secret: process.env.BKASH_CHECKOUT_URL_APP_SECRET,
         refresh_token: token_id[0].refresh_token,
-      },bkashConfig
-      // {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Accept: "application/json",
-      //     username: process.env.BKASH_CHECKOUT_URL_USER_NAME,
-      //     password: process.env.BKASH_CHECKOUT_URL_PASSWORD,
-      //   },
-      // }
+      },
+      {
+        headers: {
+          Host: process.env.BKASH_CHECKOUT_URL_BASE_URL,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          username: process.env.BKASH_CHECKOUT_URL_USER_NAME,
+          password: process.env.BKASH_CHECKOUT_URL_PASSWORD,
+        },
+      }
     );
     res
     .status(200)
     .send({ message: "course registration added successfully" ,data});
-    // const { totalFee, callbackURL, _id, reference } = req.body;
+    const { totalFee, callbackURL, _id, reference } = req.body;
 
     // id_token = data.id_token;
     // //update refesh token
