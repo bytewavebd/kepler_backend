@@ -102,9 +102,9 @@ exports.postBkshPayment = async (req, res) => {
 
     id_token = data.id_token;
     //update refesh token
-    if (token_id[0].refresh_token != data.refresh_token) {
-      refreshBkashGrandtoken();
-    }
+    // if (token_id[0].refresh_token != data.refresh_token) {
+    //   refreshBkashGrandtoken();
+    // }
     if (token_id[0].id_token == data.id_token) {
       console.log("equal");
       const paymentDetails = {
