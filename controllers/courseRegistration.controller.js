@@ -101,83 +101,83 @@ exports.postBkshPayment = async (req, res) => {
         },
       }
     );
-    res
-    .status(200)
-    .send({ message: "course registration added successfully" ,data});
-    // const { totalFee, callbackURL, _id, reference } = req.body;
+    // res
+    // .status(200)
+    // .send({ message: "course registration added successfully" ,data});
+    const { totalFee, callbackURL, _id, reference } = req.body;
 
-    // id_token = data.id_token;
-    // //update refesh token
-    // // if (token_id[0].refresh_token != data.refresh_token) {
-    // //   refreshBkashGrandtoken();
-    // // }
-    // if (token_id[0].id_token == data.id_token) {
-    //   console.log("equal");
-    //   const paymentDetails = {
-    //     mode: "0011",
-    //     payerReference: "0",
-    //     callbackURL:
-    //       "https://kepler-backend.vercel.app/api/v1/home/courseRegistration/bkash-callback",
-    //     // callbackURL:
-    //     // "http://localhost:8080/api/v1/home/courseRegistration/bkash-callback",
-    //     merchantAssociationInfo: "MI05MID54RF09123456One",
-    //     amount: totalFee || "0",
-    //     currency: "BDT",
-    //     intent: "sale",
-    //     merchantInvoiceNumber: _id || "Inv0124",
-    //   };
-    //   // const result = await createPayment(bkashConfig, paymentDetails);
-    //   const result = await axios.post(
-    //     process.env.bkash_refresh_create_url,
-    //     paymentDetails,
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Accept: "application/json",
-    //         "x-app-key": process.env.BKASH_CHECKOUT_URL_APP_KEY,
-    //         authorization: id_token,
-    //       },
-    //     }
-    //   );
+    id_token = data.id_token;
+    //update refesh token
+    if (token_id[0].refresh_token != data.refresh_token) {
+      refreshBkashGrandtoken();
+    }
+    if (token_id[0].id_token == data.id_token) {
+      console.log("equal");
+      const paymentDetails = {
+        mode: "0011",
+        payerReference: "0",
+        callbackURL:
+          "https://kepler-backend.vercel.app/api/v1/home/courseRegistration/bkash-callback",
+        // callbackURL:
+        // "http://localhost:8080/api/v1/home/courseRegistration/bkash-callback",
+        merchantAssociationInfo: "MI05MID54RF09123456One",
+        amount: totalFee || "0",
+        currency: "BDT",
+        intent: "sale",
+        merchantInvoiceNumber: _id || "Inv0124",
+      };
+      // const result = await createPayment(bkashConfig, paymentDetails);
+      const result = await axios.post(
+        process.env.bkash_refresh_create_url,
+        paymentDetails,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "x-app-key": process.env.BKASH_CHECKOUT_URL_APP_KEY,
+            authorization: id_token,
+          },
+        }
+      );
 
-    //   res.send(result.data.bkashURL);
-    // } else {
-    //   updateToken = await bkashGrandToken.findOneAndUpdate(
-    //     { _id: "66ff7f1d623f46dc92da742a" },
-    //     { id_token: id_token }
-    //   );
-    //   // console.log(updateToken);
-    //   console.log("not equal");
+      res.send(result.data.bkashURL);
+    } else {
+      updateToken = await bkashGrandToken.findOneAndUpdate(
+        { _id: "66ff7f1d623f46dc92da742a" },
+        { id_token: id_token }
+      );
+      // console.log(updateToken);
+      console.log("not equal");
 
-    //   const paymentDetails = {
-    //     mode: "0011",
-    //     payerReference: "0",
-    //     callbackURL:
-    //       "https://kepler-backend.vercel.app/api/v1/home/courseRegistration/bkash-callback",
-    //     // callbackURL:
-    //     //   "http://localhost:8080/api/v1/home/courseRegistration/bkash-callback",
-    //     merchantAssociationInfo: "MI05MID54RF09123456One",
-    //     amount: totalFee || "0",
-    //     currency: "BDT",
-    //     intent: "sale",
-    //     merchantInvoiceNumber: _id || "Inv0124",
-    //   };
+      const paymentDetails = {
+        mode: "0011",
+        payerReference: "0",
+        callbackURL:
+          "https://kepler-backend.vercel.app/api/v1/home/courseRegistration/bkash-callback",
+        // callbackURL:
+        //   "http://localhost:8080/api/v1/home/courseRegistration/bkash-callback",
+        merchantAssociationInfo: "MI05MID54RF09123456One",
+        amount: totalFee || "0",
+        currency: "BDT",
+        intent: "sale",
+        merchantInvoiceNumber: _id || "Inv0124",
+      };
  
-    //   const result = await axios.post(
-    //     process.env.bkash_refresh_create_url,
-    //     paymentDetails,
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Accept: "application/json",
-    //         "x-app-key": process.env.BKASH_CHECKOUT_URL_APP_KEY,
-    //         authorization: id_token,
-    //       },
-    //     }
-    //   );
+      const result = await axios.post(
+        process.env.bkash_refresh_create_url,
+        paymentDetails,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "x-app-key": process.env.BKASH_CHECKOUT_URL_APP_KEY,
+            authorization: id_token,
+          },
+        }
+      );
 
-    //   res.send(result.data.bkashURL);
-    // }
+      res.send(result.data.bkashURL);
+    }
 
   } catch (e) {
     console.log(e);
