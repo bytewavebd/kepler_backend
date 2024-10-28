@@ -80,7 +80,7 @@ exports.getAllEvent = async (req, res) => {
     try {
          // Get the download URL for the review to obtain the file path
          const review = await getSpecificEvent(id);
-         console.log(review[0].filename);
+    
          const filePath = review[0].filename; // Adjust this based on your data structure
      
          // Create a reference to the file in Firebase Storage
@@ -91,6 +91,7 @@ exports.getAllEvent = async (req, res) => {
          await deleteObject(fileRef);
      
          // Delete the review from your database
+     
          const deletedItem = await deleteEvent(id);
      
          if (!deletedItem) {

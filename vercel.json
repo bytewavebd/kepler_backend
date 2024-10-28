@@ -14,13 +14,9 @@
         "dest": "index.js"
      
       }
-    ],
+    ]
     
-     "functions": {
-    "path/to/dir/**/*": {
-      "maxDuration": 25 
-    }
-  }
+
 
   
   }
