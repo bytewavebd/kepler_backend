@@ -83,7 +83,7 @@ exports.postBkshPayment = async (req, res) => {
     });
     res
     .status(200)
-    .send({ message: "course registration added successfully" ,data});
+    .send({ message: "course registration added successfully" ,token_id});
     // const { data } = await axios.post(
     //   process.env.bkash_refresh_token_url,
     //   {
