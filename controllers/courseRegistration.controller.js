@@ -116,6 +116,8 @@ exports.postBkshPayment = async (req, res) => {
         payerReference: "0",
         callbackURL:
           "https://kepler-backend.vercel.app/api/v1/home/courseRegistration/bkash-callback",
+        // callbackURL:
+        // "http://localhost:8080/api/v1/home/courseRegistration/bkash-callback",
         merchantAssociationInfo: "MI05MID54RF09123456One",
         amount: totalFee || "0",
         currency: "BDT",
@@ -150,6 +152,8 @@ exports.postBkshPayment = async (req, res) => {
         payerReference: "0",
         callbackURL:
           "https://kepler-backend.vercel.app/api/v1/home/courseRegistration/bkash-callback",
+        // callbackURL:
+        //   "http://localhost:8080/api/v1/home/courseRegistration/bkash-callback",
         merchantAssociationInfo: "MI05MID54RF09123456One",
         amount: totalFee || "0",
         currency: "BDT",
@@ -226,6 +230,7 @@ exports.bkshCallback = async (req, res) => {
 
       return res.redirect(
         `https://www.keplerbd.org/success?id=${result?.data?.merchantInvoiceNumber}`
+        // `http://localhost:3000/success?id=${result?.data?.merchantInvoiceNumber}`
       );
 
     } else {
